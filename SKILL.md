@@ -2,7 +2,7 @@
 name: playwright-mcp-skill
 description: >
   Use Playwright MCP for browser automation in AI coding agents.
-  Use when setting up Playwright MCP, installing the Chrome extension,
+  Use when setting up Playwright MCP, installing the browser extension,
   configuring MCP servers, taking browser screenshots,
   or troubleshooting browser automation issues.
 metadata:
@@ -12,44 +12,18 @@ metadata:
 
 # Playwright MCP
 
-Playwright MCP is an MCP server that provides browser automation via structured accessibility snapshots -- no vision models or screenshots needed. It works on any website without site-side changes.
+Playwright MCP is an MCP server for browser automation using structured accessibility snapshots. It works on any website without site-side changes and supports Chromium, Firefox, and WebKit.
 
-## Extension Mode
-
-To use your real Chrome browser (with existing logins, cookies, sessions), run Playwright MCP in `--extension` mode with the Playwright MCP Bridge Chrome extension installed. This avoids re-authentication. See [references/SETUP.md](references/SETUP.md) for first-time installation.
-
-## Configuration
-
-Use `--output-dir` to redirect session logs, traces, console recordings, and auto-named screenshots to a temp folder instead of the project root.
-
-**Windows** (`cmd /c` expands `%TEMP%`):
-
-```json
-{
-  "command": "cmd",
-  "args": ["/c", "npx @playwright/mcp@latest --extension --output-dir %TEMP%/playwright-mcp"],
-  "env": { "PLAYWRIGHT_MCP_EXTENSION_TOKEN": "<token>" }
-}
-```
-
-**macOS / Linux** (`sh -c` expands `/tmp`):
-
-```json
-{
-  "command": "sh",
-  "args": ["-c", "npx @playwright/mcp@latest --extension --output-dir /tmp/playwright-mcp"],
-  "env": { "PLAYWRIGHT_MCP_EXTENSION_TOKEN": "<token>" }
-}
-```
+For first-time installation and editor-specific configuration, see [references/SETUP.md](references/SETUP.md).
 
 ## Screenshots
 
-When calling `browser_take_screenshot`, do not pass a custom `filename`. Auto-generated names (`page-{timestamp}.png`) correctly route to `--output-dir`. Custom filenames bypass `--output-dir` and save to the workspace root.
+When calling `browser_take_screenshot`, omit the `filename` parameter. Auto-generated names (`page-{timestamp}.png`) route to `--output-dir` correctly. Custom filenames bypass `--output-dir` and save to the workspace root (known upstream issue).
 
 ## Troubleshooting
 
-- **`.playwright-mcp/` folder in project** -- config is missing `--output-dir`; add it and delete the folder
-- **"No MCP clients are currently connected"** -- restart your editor, verify `mcp.json` is saved
+- **`.playwright-mcp/` folder in project** -- config is missing `--output-dir`; add it per [references/SETUP.md](references/SETUP.md) and delete the folder
 - **Connection popup every time** -- ensure `PLAYWRIGHT_MCP_EXTENSION_TOKEN` is set in the `env` block
-- **"Process with MCP failed to execute tool"** -- Chrome must be open with the extension loaded (not disabled)
+- **"No MCP clients are currently connected"** -- restart the editor, verify MCP config is saved
+- **"Process with MCP failed to execute tool"** -- the browser must be open with the extension loaded
 - **Token changed** -- tokens regenerate on extension reinstall; update the config with the new value

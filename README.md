@@ -5,10 +5,10 @@
 
 An [Agent Skill](https://agentskills.io) for configuring and using [Playwright MCP](https://github.com/microsoft/playwright-mcp) browser automation in AI coding agents.
 
-## Install
+## Install (Cursor)
 
 ```bash
 git submodule add https://github.com/LeeorNahum/playwright-mcp-skill .cursor/skills/playwright-mcp-skill
 ```
 
-Works with Cursor, Claude Code, VS Code Copilot, Codex, and any agent supporting the [Agent Skills](https://agentskills.io) standard.
+For Claude Code or Codex, use `.claude/skills/` or `.codex/skills/` respectively.
