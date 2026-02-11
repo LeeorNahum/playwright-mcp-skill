@@ -14,15 +14,17 @@ metadata:
 
 Playwright MCP is an MCP server for browser automation using structured accessibility snapshots. It works on any website without site-side changes and supports Chromium, Firefox, and WebKit.
 
-For first-time installation and editor-specific configuration, see [references/SETUP.md](references/SETUP.md).
+## First-Time Setup
+
+Setting up Playwright MCP requires manual steps that the user must perform (installing a browser extension, retrieving a token, editing config files). If Playwright MCP is not yet configured, guide the user through the steps in [references/SETUP.md](references/SETUP.md). If it is already installed but missing the `--output-dir` flag, update the config per the same reference.
 
 ## Screenshots
 
-When calling `browser_take_screenshot`, omit the `filename` parameter. Auto-generated names (`page-{timestamp}.png`) route to `--output-dir` correctly. Custom filenames bypass `--output-dir` and save to the workspace root (known upstream issue).
+When calling `browser_take_screenshot`, omit the `filename` parameter. Auto-generated names (`page-{timestamp}.png`) route to `--output-dir` correctly. Custom filenames bypass `--output-dir` and save to the workspace root (known upstream issue, PR [#39229](https://github.com/microsoft/playwright/pull/39229)).
 
 ## Troubleshooting
 
-- **`.playwright-mcp/` folder in project** -- config is missing `--output-dir`; add it per [references/SETUP.md](references/SETUP.md) and delete the folder
+- **`.playwright-mcp/` folder in project** -- config is missing `--output-dir`; update per [references/SETUP.md](references/SETUP.md) and delete the folder
 - **Connection popup every time** -- ensure `PLAYWRIGHT_MCP_EXTENSION_TOKEN` is set in the `env` block
 - **"No MCP clients are currently connected"** -- restart the editor, verify MCP config is saved
 - **"Process with MCP failed to execute tool"** -- the browser must be open with the extension loaded

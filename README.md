@@ -5,6 +5,8 @@
 
 An [Agent Skill](https://agentskills.io) for configuring and using [Playwright MCP](https://github.com/microsoft/playwright-mcp) browser automation in AI coding agents.
 
+**First-time setup?** See [references/SETUP.md](references/SETUP.md) for step-by-step installation (browser extension, token, editor config).
+
 ## Install (Cursor)
 
 ```bash
