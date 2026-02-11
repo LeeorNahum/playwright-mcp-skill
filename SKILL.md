@@ -20,7 +20,7 @@ Setting up Playwright MCP requires manual steps that the user must perform (inst
 
 ## Screenshots
 
-When calling `browser_take_screenshot`, omit the `filename` parameter. Auto-generated names (`page-{timestamp}.png`) route to `--output-dir` correctly. Custom filenames bypass `--output-dir` and save to the workspace root (known upstream issue, PR [#39229](https://github.com/microsoft/playwright/pull/39229)).
+When calling `browser_take_screenshot`, omit the `filename` parameter. Auto-generated names (`page-{timestamp}.png`) route to `--output-dir` correctly. Custom filenames bypass `--output-dir` and save to the workspace root.
 
 ## Troubleshooting
 
