@@ -28,6 +28,8 @@ Tokens regenerate if you reinstall the extension. Update your config if this hap
 
 The JSON config is the same across editors. The only differences are the file path and whether to use a shell wrapper for OS variable expansion.
 
+The server and extension versions must match. Using `@latest` is fine as long as the extension is also up to date. If you hit connection timeouts, check for a version mismatch.
+
 ### Config (JSON)
 
 **Windows** (use `cmd /c` to expand `%TEMP%`):

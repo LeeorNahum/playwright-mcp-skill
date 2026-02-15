@@ -7,7 +7,7 @@ description: >
   or troubleshooting browser automation issues.
 metadata:
   author: Leeor Nahum
-  version: "1.0"
+  version: "1.1"
 ---
 
 # Playwright MCP
@@ -24,6 +24,11 @@ When calling `browser_take_screenshot`, omit the `filename` parameter. Auto-gene
 
 ## Troubleshooting
 
+- **"Extension connection timeout"** -- the MCP server cannot reach the browser extension. Common causes:
+  1. **Version mismatch**: the server and extension versions must match. Check the extension version at `chrome://extensions/` and either update the extension or pin the server to the same version in the config (e.g. `@playwright/mcp@0.0.64`).
+  2. **Browser not open**: the browser with the extension must be running.
+  3. **Service worker asleep**: click "service worker" under Inspect views on the extension details page to wake it, then restart the MCP server in your editor.
+  4. **Stale MCP server process**: restart the MCP server in your editor settings (toggle off then on).
 - **`.playwright-mcp/` folder in project** -- config is missing `--output-dir`; update per [references/SETUP.md](references/SETUP.md) and delete the folder
 - **Connection popup every time** -- ensure `PLAYWRIGHT_MCP_EXTENSION_TOKEN` is set in the `env` block
 - **"No MCP clients are currently connected"** -- restart the editor, verify MCP config is saved
