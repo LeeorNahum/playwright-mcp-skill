@@ -66,6 +66,19 @@ The server and extension versions must match. Using `@latest` is fine as long as
 
 The `--output-dir` flag redirects session logs, traces, console recordings, and auto-named screenshots to a temp folder instead of creating a `.playwright-mcp/` directory in your project.
 
+### Important: custom screenshot filename behavior
+
+`--output-dir` does **not** override all filename behavior. For `browser_take_screenshot`:
+
+- If you omit `filename`, screenshots go to `--output-dir` (recommended).
+- If you pass a relative `filename` like `test.png`, it may resolve to your project workspace and clutter the repo.
+- If you need a custom filename, pass an absolute path in your temp folder.
+
+Examples:
+
+- Windows: `C:\\Users\\<you>\\AppData\\Local\\Temp\\playwright-mcp\\my-shot.png`
+- macOS/Linux: `/tmp/playwright-mcp/my-shot.png`
+
 ### Config (TOML -- Codex only)
 
 ```toml
@@ -80,7 +93,7 @@ PLAYWRIGHT_MCP_EXTENSION_TOKEN = "<your-token>"
 ### Where to Place the Config
 
 | Editor | Global config | Project config |
-|--------|--------------|----------------|
+| -------- | -------------- | ---------------- |
 | Cursor | `~/.cursor/mcp.json` | `.cursor/mcp.json` |
 | Claude Code | `~/.claude.json` | `.claude/mcp.json` |
 | Claude Desktop | `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%\Claude\claude_desktop_config.json` (Win) | -- |
@@ -90,6 +103,7 @@ PLAYWRIGHT_MCP_EXTENSION_TOKEN = "<your-token>"
 ### CLI Shortcuts
 
 **Claude Code:**
+
 ```bash
 claude mcp add playwright \
   --env PLAYWRIGHT_MCP_EXTENSION_TOKEN=<your-token> \
@@ -97,6 +111,7 @@ claude mcp add playwright \
 ```
 
 **VS Code:**
+
 ```bash
 code --add-mcp '{"name":"playwright","command":"npx","args":["@playwright/mcp@latest","--extension","--output-dir","/tmp/playwright-mcp"],"env":{"PLAYWRIGHT_MCP_EXTENSION_TOKEN":"<your-token>"}}'
 ```

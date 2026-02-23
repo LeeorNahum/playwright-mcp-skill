@@ -7,7 +7,7 @@ description: >
   or troubleshooting browser automation issues.
 metadata:
   author: Leeor Nahum
-  version: "1.1"
+  version: "1.2"
 ---
 
 # Playwright MCP
@@ -20,7 +20,13 @@ Setting up Playwright MCP requires manual steps that the user must perform (inst
 
 ## Screenshots
 
-When calling `browser_take_screenshot`, omit the `filename` parameter. Auto-generated names (`page-{timestamp}.png`) route to `--output-dir` correctly. Custom filenames bypass `--output-dir` and save to the workspace root.
+`browser_take_screenshot` follows path-resolution rules that are separate from `--output-dir`:
+
+- No `filename`: auto-generated names (`page-{timestamp}.png`) route to `--output-dir`.
+- Relative `filename` (for example, `test.png`): resolved relative to the client workspace / cwd and can land in the project root.
+- Absolute `filename`: saved exactly where that absolute path points.
+
+To avoid project clutter, prefer omitting `filename`. If you need a custom name, pass an absolute path inside your temp output folder.
 
 ## Troubleshooting
 
