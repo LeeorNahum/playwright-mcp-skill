@@ -1,13 +1,9 @@
 ---
-name: playwright-mcp-skill
-description: >
-  Use Playwright MCP for browser automation in AI coding agents.
-  Use when setting up Playwright MCP, installing the browser extension,
-  configuring MCP servers, taking browser screenshots,
-  or troubleshooting browser automation issues.
+name: "playwright-mcp"
+description: "Use Playwright MCP for browser automation in AI coding agents. Use when setting up Playwright MCP, installing the browser extension, configuring MCP servers, taking browser screenshots, or troubleshooting browser automation issues."
 metadata:
-  author: Leeor Nahum
-  version: "1.2"
+  author: "Leeor Nahum"
+  version: "1.3.0"
 ---
 
 # Playwright MCP
